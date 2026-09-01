@@ -21,7 +21,7 @@ class MyApp extends StatefulWidget {
     {'nama': 'Penggaris', 'anggota' : 6000, 'umum' : 7000, 'stok' : 25, 'kategori' : 'ATK'},
   ];
 
-  @override
+ @override
   State<MyApp> createState() => _MyAppState();
 }
 
@@ -67,18 +67,43 @@ class _MyAppState extends State<MyApp> {
               },
             ),
 
-            Expanded(
-              child: ListView.builder(
-                itemCount: hasilCari.length,
-                itemBuilder: (context, index) {
-                  final barang = hasilCari[index];
+            Text(
+              'Lebar Layar: ' +
+                MediaQuery.of(context).size.width.toStringAsFixed(0),
+            ),
+            // Menampilkan lebar layar
 
-                  return BarangCard(
-                    nama: barang['nama'],
-                    hargaAnggota: barang['anggota'],
-                    stok: barang['stok'],
-                    kategori: barang['kategori'],
-                    sorot: true,
+            Expanded(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  int kolom;
+
+                  if (constraints.maxWidth < 600) {
+                    kolom = 1;
+                  } else if (constraints.maxWidth < 900) {
+                    kolom = 2;
+                  } else {
+                    kolom = 3;
+                  }
+
+                  return GridView.builder(
+                    gridDelegate:
+                        SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: kolom,
+                      childAspectRatio: 3,
+                    ),
+                    itemCount: hasilCari.length,
+                    itemBuilder: (context, index) {
+                      final barang = hasilCari[index];
+
+                      return BarangCard(
+                        nama: barang['nama'],
+                        hargaAnggota: barang['anggota'],
+                        stok: barang['stok'],
+                        kategori: barang['kategori'],
+                        sorot: true,
+                      );
+                    },
                   );
                 },
               ),
