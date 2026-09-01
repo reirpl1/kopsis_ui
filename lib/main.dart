@@ -3,7 +3,7 @@ import 'barang_card.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   static const List<Map<String, dynamic>> daftarBarang = [
@@ -22,25 +22,68 @@ class MyApp extends StatelessWidget {
   ];
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late TextEditingController _controller;
+  String kataCari = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final hasilCari = MyApp.daftarBarang
+        .where((b) => b['nama'].toLowerCase().contains(kataCari))
+        .toList();
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Koperasi Sekolah'),
         ),
-        body: ListView.builder(
-          itemCount: daftarBarang.where((barang) => barang['stok'] > 0).length,
-          itemBuilder: (context, index) {
-            final barang =
-                daftarBarang.where((barang) => barang['stok'] > 0).toList()[index];
-            return BarangCard(
-              nama: barang['nama'],
-              hargaAnggota: barang['anggota'],
-              stok: barang['stok'],
-              kategori: barang['kategori'],
-              sorot: true,
-            );
-          },
+        body: Column(
+          children: [
+            TextField(
+              controller: _controller,
+              decoration: const InputDecoration(
+                hintText: 'Cari barang...',
+                prefixIcon: Icon(Icons.search),
+              ),
+              onChanged: (nilai) {
+                setState(() {
+                  kataCari = nilai.toLowerCase();
+                });
+              },
+            ),
+
+            Expanded(
+              child: ListView.builder(
+                itemCount: hasilCari.length,
+                itemBuilder: (context, index) {
+                  final barang = hasilCari[index];
+
+                  return BarangCard(
+                    nama: barang['nama'],
+                    hargaAnggota: barang['anggota'],
+                    stok: barang['stok'],
+                    kategori: barang['kategori'],
+                    sorot: true,
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
