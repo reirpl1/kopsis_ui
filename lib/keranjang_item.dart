@@ -11,14 +11,30 @@ class KeranjangItem extends StatefulWidget {
   });
 
   @override
-  State<KeranjangItem> createState() => _KeranjangItemState();
+  State<KeranjangItem> createState() {
+    return _KeranjangItemState();
+  }
 }
 
 class _KeranjangItemState extends State<KeranjangItem> {
   int jumlah = 1;
 
   @override
+  void initState() {
+    super.initState();
+    print('initState dipanggil');
+  }
+
+  @override
+  void dispose() {
+    print('dispose dipanggil');
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('BUKTI: build() dipanggil');
+
     int totalHarga = jumlah * widget.hargaAnggota;
 
     return Row(
@@ -60,8 +76,8 @@ class _KeranjangItemState extends State<KeranjangItem> {
           'Total: Rp$totalHarga',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-          )
-        )
+               ),
+        ),
       ],
     );
   }
