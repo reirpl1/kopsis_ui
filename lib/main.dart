@@ -7,7 +7,7 @@ class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   static const List<Map<String, dynamic>> daftarBarang = [
-    {'nama': 'Buku Tulis', 'anggota' : 3000, 'umum' : 3500, 'stok' : 40, 'kategori' : 'ATK'},
+    {'nama': 'Buku Tulis Bergaris 58 Lembar Sampul Tebal', 'anggota' : 3000, 'umum' : 3500, 'stok' : 40, 'kategori' : 'ATK'},
     {'nama': 'Pulpen', 'anggota' : 2500, 'umum' : 3000, 'stok' : 25, 'kategori' : 'ATK'},
     {'nama': 'Roti', 'anggota' : 5000, 'umum' : 5500, 'stok' : 15, 'kategori' : 'Makanan'},
     {'nama': 'Permen', 'anggota' : 2000, 'umum' : 3000, 'stok' : 40, 'kategori' : 'Makanan'},

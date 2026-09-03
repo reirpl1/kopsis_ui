@@ -23,22 +23,42 @@ class BarangCard extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.all(8),
       color: sorot ? Colors.yellow[100] : null,
-      child: ListTile(
-        leading: const Icon(Icons.shopping_bag),
-        title: Text(nama),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Row(
           children: [
-            Text('Anggota Rp' + hargaAnggota.toString()),
-            Text(
-              kategori,
-              style: const TextStyle(fontSize: 12),
+            const Icon(Icons.shopping_bag),
+
+            const SizedBox(width: 8),
+
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    nama,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    'Anggota Rp$hargaAnggota',
+                  ),
+                  Text(
+                    kategori,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(width: 8),
+
+            KeranjangItem(
+              stok: stok,
+              hargaAnggota: hargaAnggota,
             ),
           ],
-        ),
-        trailing: KeranjangItem(
-          stok: stok,
-          hargaAnggota: hargaAnggota,
         ),
       ),
     );
