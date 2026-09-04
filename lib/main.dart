@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
     {'nama': 'Permen', 'anggota' : 2000, 'umum' : 3000, 'stok' : 40, 'kategori' : 'Makanan'},
     {'nama': 'Air Mineral', 'anggota' : 3500, 'umum' : 4000, 'stok' : 50, 'kategori' : 'Minuman'},
 
-    //5 barang tambahan
+    // 5 barang tambahan
     {'nama': 'Pensil', 'anggota' : 2000, 'umum' : 2500, 'stok' : 30, 'kategori' : 'ATK'},
     {'nama': 'Penghapus', 'anggota' : 1500, 'umum' : 2000, 'stok' : 50, 'kategori' : 'ATK'},
     {'nama': 'Keripik', 'anggota' : 200, 'umum' : 3000, 'stok' : 0, 'kategori' : 'Makanan'},
